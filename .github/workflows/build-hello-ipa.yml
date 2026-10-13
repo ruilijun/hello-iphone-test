@@ -12,33 +12,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install XcodeGen
-        run: |
-          brew install xcodegen || echo "xcodegen already installed"
-
-      - name: Generate Xcode project
-        run: |
-          xcodegen generate
-          ls -la HelloIphone.xcodeproj
-
-      - name: Build for device
+      - name: Build Swift Package for iOS
         run: |
           set -e
-          xcodebuild -project HelloIphone.xcodeproj \
+          xcodebuild \
             -scheme HelloIphone \
-            -configuration Release \
             -sdk iphoneos \
-            -derivedDataPath DerivedData \
+            -destination "generic/platform=iOS" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_ALLOWED=NO \
             build
+          find . -name "HelloIphone.app" -type d
 
       - name: Locate .app
         id: locate
         run: |
-          app=$(find DerivedData/Build/Products/Release-iphoneos -maxdepth 1 -name "HelloIphone.app" -type d | head -n 1)
+          app=$(find . -name "HelloIphone.app" -type d | head -n 1)
+          [ -z "$app" ] && { echo "No .app found"; find . -name "*.app" 2>/dev/null; exit 1; }
           echo "app=$app" >> "$GITHUB_OUTPUT"
-          [ -d "$app" ] || { echo "No .app found"; ls -la DerivedData/Build/Products/Release-iphoneos; exit 1; }
+          echo "Found: $app"
 
       - name: Package .ipa
         run: |
