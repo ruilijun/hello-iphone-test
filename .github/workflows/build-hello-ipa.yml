@@ -2,7 +2,7 @@
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
@@ -11,6 +11,15 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: |
+          brew install xcodegen || echo "xcodegen already installed"
+
+      - name: Generate Xcode project
+        run: |
+          xcodegen generate
+          ls -la HelloIphone.xcodeproj
 
       - name: Build for device
         run: |
