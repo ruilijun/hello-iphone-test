@@ -1,0 +1,48 @@
+﻿name: Build HelloiPhone ipa
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build for device
+        run: |
+          set -e
+          xcodebuild -project HelloIphone.xcodeproj \
+            -scheme HelloIphone \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Locate .app
+        id: locate
+        run: |
+          app=$(find DerivedData/Build/Products/Release-iphoneos -maxdepth 1 -name "HelloIphone.app" -type d | head -n 1)
+          echo "app=$app" >> "$GITHUB_OUTPUT"
+          [ -d "$app" ] || { echo "No .app found"; ls -la DerivedData/Build/Products/Release-iphoneos; exit 1; }
+
+      - name: Package .ipa
+        run: |
+          set -e
+          workdir=ipa_payload
+          mkdir -p "$workdir/Payload"
+          cp -R "${{ steps.locate.outputs.app }}" "$workdir/Payload/"
+          (cd "$workdir" && zip -qr -y ../HelloIphone.ipa Payload)
+          ls -la HelloIphone.ipa
+
+      - name: Upload ipa artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HelloIphone-ipa
+          path: HelloIphone.ipa
+          if-no-files-found: error
