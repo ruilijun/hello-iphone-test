@@ -1,4 +1,4 @@
-﻿name: Build HelloiPhone ipa
+name: Build HelloiPhone ipa
 
 on:
   push:
@@ -12,36 +12,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build Swift Package for iOS
+      - name: Show toolchain
         run: |
-          set -e
+          xcodebuild -version
+          sw_vers
+
+      - name: Build for device
+        run: |
+          set -euo pipefail
           xcodebuild \
-            -scheme HelloIphone \
+            -project HelloIphone.xcodeproj \
+            -target HelloIphone \
+            -configuration Release \
             -sdk iphoneos \
-            -destination "generic/platform=iOS" \
+            SYMROOT="$PWD/build" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
             build
-          find . -name "HelloIphone.app" -type d
+          ls -la "$PWD/build/Release-iphoneos"
 
-      - name: Locate .app
-        id: locate
+      - name: Package ipa
         run: |
-          app=$(find . -name "HelloIphone.app" -type d | head -n 1)
-          [ -z "$app" ] && { echo "No .app found"; find . -name "*.app" 2>/dev/null; exit 1; }
-          echo "app=$app" >> "$GITHUB_OUTPUT"
-          echo "Found: $app"
-
-      - name: Package .ipa
-        run: |
-          set -e
-          workdir=ipa_payload
-          mkdir -p "$workdir/Payload"
-          cp -R "${{ steps.locate.outputs.app }}" "$workdir/Payload/"
-          (cd "$workdir" && zip -qr -y ../HelloIphone.ipa Payload)
+          set -euo pipefail
+          APP="$PWD/build/Release-iphoneos/HelloIphone.app"
+          test -d "$APP"
+          rm -rf ipa_payload
+          mkdir -p ipa_payload/Payload
+          cp -R "$APP" ipa_payload/Payload/
+          cd ipa_payload
+          zip -qry ../HelloIphone.ipa Payload
+          cd ..
           ls -la HelloIphone.ipa
 
-      - name: Upload ipa artifact
+      - name: Upload ipa
         uses: actions/upload-artifact@v4
         with:
           name: HelloIphone-ipa

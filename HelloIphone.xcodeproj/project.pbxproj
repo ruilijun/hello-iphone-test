@@ -1,0 +1,178 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A100000000000000000000C3 /* HelloIphoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000C1 /* HelloIphoneApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A100000000000000000000A7 /* HelloIphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloIphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A100000000000000000000C1 /* HelloIphoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloIphoneApp.swift; sourceTree = "<group>"; };
+		A100000000000000000000C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		A100000000000000000000A2 = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000A4 /* Sources */,
+				A100000000000000000000D1 /* HelloIphone */,
+				A100000000000000000000A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A100000000000000000000A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000A7 /* HelloIphone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A100000000000000000000A4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000C1 /* HelloIphoneApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A100000000000000000000D1 /* HelloIphone */ = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000C2 /* Info.plist */,
+			);
+			path = HelloIphone;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A100000000000000000000A5 /* HelloIphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A100000000000000000000A9 /* Build configuration list for PBXNativeTarget "HelloIphone" */;
+			buildPhases = (
+				A100000000000000000000A6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloIphone;
+			productName = HelloIphone;
+			productReference = A100000000000000000000A7 /* HelloIphone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A100000000000000000000A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A100000000000000000000A5 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A100000000000000000000A8 /* Build configuration list for PBXProject "HelloIphone" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A100000000000000000000A2;
+			productRefGroup = A100000000000000000000A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A100000000000000000000A5 /* HelloIphone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A100000000000000000000A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A100000000000000000000C3 /* HelloIphoneApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A100000000000000000000B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A100000000000000000000B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = HelloIphone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fucai.helloiphone;
+				PRODUCT_NAME = HelloIphone;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A100000000000000000000A8 /* Build configuration list for PBXProject "HelloIphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000000000000000000B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A100000000000000000000A9 /* Build configuration list for PBXNativeTarget "HelloIphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000000000000000000B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A100000000000000000000A1 /* Project object */;
+}
